@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Parcial3PWAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="briefcase">
+    <Key>
+      <PropertyRef Name="bc_id" />
+    </Key>
+    <Property Name="bc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="proyect_name" Type="varchar" MaxLength="100" />
+    <Property Name="proyect_rol" Type="varchar" MaxLength="50" />
+    <Property Name="summary" Type="text" />
+    <Property Name="responsabilities" Type="varchar" MaxLength="200" />
+    <Property Name="used_tech" Type="varchar" MaxLength="200" />
+    <Property Name="user_id" Type="int" />
+  </EntityType>
+  <EntityType Name="certifications">
+    <Key>
+      <PropertyRef Name="cert_id" />
+    </Key>
+    <Property Name="cert_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cert_name" Type="varchar" MaxLength="100" />
+    <Property Name="cert_institution" Type="varchar" MaxLength="100" />
+    <Property Name="cert_description" Type="text" />
+    <Property Name="cert_link" Type="text" />
+    <Property Name="user_id" Type="int" />
+  </EntityType>
+  <EntityType Name="skills">
+    <Key>
+      <PropertyRef Name="skill_id" />
+    </Key>
+    <Property Name="skill_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="skill_description" Type="varchar" MaxLength="100" />
+    <Property Name="user_id" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_name" Type="varchar" MaxLength="50" />
+    <Property Name="user_photo" Type="text" />
+    <Property Name="first_name" Type="varchar" MaxLength="30" />
+    <Property Name="last_name" Type="varchar" MaxLength="30" />
+    <Property Name="email" Type="varchar" MaxLength="256" />
+    <Property Name="social_net" Type="text" />
+    <Property Name="introduction" Type="text" />
+    <Property Name="grade" Type="varchar" MaxLength="50" />
+    <Property Name="profession" Type="varchar" MaxLength="50" />
+    <Property Name="university" Type="varchar" MaxLength="50" />
+    <Property Name="grade_obj" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="work_experience">
+    <Key>
+      <PropertyRef Name="work_exp_id" />
+    </Key>
+    <Property Name="work_exp_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="work_exp_description" Type="varchar" MaxLength="100" />
+    <Property Name="date_init" Type="date" />
+    <Property Name="date_fin" Type="date" />
+    <Property Name="user_id" Type="int" />
+  </EntityType>
+  <Association Name="FK_briefcase_users">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="briefcase" Type="Self.briefcase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="briefcase">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_certifications_users">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="certifications" Type="Self.certifications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="certifications">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_skills_users">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="skills" Type="Self.skills" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="skills">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_work_experience_users">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="work_experience" Type="Self.work_experience" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="work_experience">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Parcial3PWAModelStoreContainer">
+    <EntitySet Name="briefcase" EntityType="Self.briefcase" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="certifications" EntityType="Self.certifications" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="skills" EntityType="Self.skills" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="work_experience" EntityType="Self.work_experience" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_briefcase_users" Association="Self.FK_briefcase_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="briefcase" EntitySet="briefcase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_certifications_users" Association="Self.FK_certifications_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="certifications" EntitySet="certifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_skills_users" Association="Self.FK_skills_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="skills" EntitySet="skills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_work_experience_users" Association="Self.FK_work_experience_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="work_experience" EntitySet="work_experience" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

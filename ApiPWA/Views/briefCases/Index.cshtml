@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ApiPWA.briefcase>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.proyect_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.proyect_rol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.summary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.responsabilities)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.used_tech)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.users.user_name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.proyect_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.proyect_rol)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.summary)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.responsabilities)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.used_tech)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.users.user_name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.bc_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.bc_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.bc_id })
+        </td>
+    </tr>
+}
+
+</table>

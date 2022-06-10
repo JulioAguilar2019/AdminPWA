@@ -1,0 +1,66 @@
+﻿@model ApiPWA.briefcase
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>briefcase</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.proyect_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.proyect_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.proyect_rol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.proyect_rol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.summary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.summary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.responsabilities)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.responsabilities)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.used_tech)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.used_tech)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.users.user_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.users.user_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.bc_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

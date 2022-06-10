@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ApiPWA.work_experience>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.work_exp_description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_init)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_fin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.users.user_name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.work_exp_description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date_init)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date_fin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.users.user_name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.work_exp_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.work_exp_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.work_exp_id })
+        </td>
+    </tr>
+}
+
+</table>

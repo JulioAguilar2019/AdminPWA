@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Parcial3PWAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="briefcase">
+    <Key>
+      <PropertyRef Name="bc_id" />
+    </Key>
+    <Property Name="bc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="proyect_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="proyect_rol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="responsabilities" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="used_tech" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="user_id" Type="Int32" />
+    <NavigationProperty Name="users" Relationship="Self.FK_briefcase_users" FromRole="briefcase" ToRole="users" />
+  </EntityType>
+  <EntityType Name="certifications">
+    <Key>
+      <PropertyRef Name="cert_id" />
+    </Key>
+    <Property Name="cert_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cert_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="cert_institution" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="cert_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="cert_link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="user_id" Type="Int32" />
+    <NavigationProperty Name="users" Relationship="Self.FK_certifications_users" FromRole="certifications" ToRole="users" />
+  </EntityType>
+  <EntityType Name="skills">
+    <Key>
+      <PropertyRef Name="skill_id" />
+    </Key>
+    <Property Name="skill_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="skill_description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="user_id" Type="Int32" />
+    <NavigationProperty Name="users" Relationship="Self.FK_skills_users" FromRole="skills" ToRole="users" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="user_photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="first_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="last_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="social_net" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="introduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="grade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="profession" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="university" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="grade_obj" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="briefcase" Relationship="Self.FK_briefcase_users" FromRole="users" ToRole="briefcase" />
+    <NavigationProperty Name="certifications" Relationship="Self.FK_certifications_users" FromRole="users" ToRole="certifications" />
+    <NavigationProperty Name="skills" Relationship="Self.FK_skills_users" FromRole="users" ToRole="skills" />
+    <NavigationProperty Name="work_experience" Relationship="Self.FK_work_experience_users" FromRole="users" ToRole="work_experience" />
+  </EntityType>
+  <EntityType Name="work_experience">
+    <Key>
+      <PropertyRef Name="work_exp_id" />
+    </Key>
+    <Property Name="work_exp_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="work_exp_description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="date_init" Type="DateTime" Precision="0" />
+    <Property Name="date_fin" Type="DateTime" Precision="0" />
+    <Property Name="user_id" Type="Int32" />
+    <NavigationProperty Name="users" Relationship="Self.FK_work_experience_users" FromRole="work_experience" ToRole="users" />
+  </EntityType>
+  <Association Name="FK_briefcase_users">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="briefcase" Type="Self.briefcase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="briefcase">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_certifications_users">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="certifications" Type="Self.certifications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="certifications">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_skills_users">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="skills" Type="Self.skills" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="skills">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_work_experience_users">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="work_experience" Type="Self.work_experience" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="work_experience">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Parcial3PWAEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="briefcase" EntityType="Self.briefcase" />
+    <EntitySet Name="certifications" EntityType="Self.certifications" />
+    <EntitySet Name="skills" EntityType="Self.skills" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="users" EntityType="Self.users" />
+    <EntitySet Name="work_experience" EntityType="Self.work_experience" />
+    <AssociationSet Name="FK_briefcase_users" Association="Self.FK_briefcase_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="briefcase" EntitySet="briefcase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_certifications_users" Association="Self.FK_certifications_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="certifications" EntitySet="certifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_skills_users" Association="Self.FK_skills_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="skills" EntitySet="skills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_work_experience_users" Association="Self.FK_work_experience_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="work_experience" EntitySet="work_experience" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

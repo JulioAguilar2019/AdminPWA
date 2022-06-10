@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Parcial3PWAModelStoreContainer" CdmEntityContainer="Parcial3PWAEntities">
+    <EntitySetMapping Name="briefcase">
+      <EntityTypeMapping TypeName="Parcial3PWAModel.briefcase">
+        <MappingFragment StoreEntitySet="briefcase">
+          <ScalarProperty Name="bc_id" ColumnName="bc_id" />
+          <ScalarProperty Name="proyect_name" ColumnName="proyect_name" />
+          <ScalarProperty Name="proyect_rol" ColumnName="proyect_rol" />
+          <ScalarProperty Name="summary" ColumnName="summary" />
+          <ScalarProperty Name="responsabilities" ColumnName="responsabilities" />
+          <ScalarProperty Name="used_tech" ColumnName="used_tech" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="certifications">
+      <EntityTypeMapping TypeName="Parcial3PWAModel.certifications">
+        <MappingFragment StoreEntitySet="certifications">
+          <ScalarProperty Name="cert_id" ColumnName="cert_id" />
+          <ScalarProperty Name="cert_name" ColumnName="cert_name" />
+          <ScalarProperty Name="cert_institution" ColumnName="cert_institution" />
+          <ScalarProperty Name="cert_description" ColumnName="cert_description" />
+          <ScalarProperty Name="cert_link" ColumnName="cert_link" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="skills">
+      <EntityTypeMapping TypeName="Parcial3PWAModel.skills">
+        <MappingFragment StoreEntitySet="skills">
+          <ScalarProperty Name="skill_id" ColumnName="skill_id" />
+          <ScalarProperty Name="skill_description" ColumnName="skill_description" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="Parcial3PWAModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="Parcial3PWAModel.users">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="user_photo" ColumnName="user_photo" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="social_net" ColumnName="social_net" />
+          <ScalarProperty Name="introduction" ColumnName="introduction" />
+          <ScalarProperty Name="grade" ColumnName="grade" />
+          <ScalarProperty Name="profession" ColumnName="profession" />
+          <ScalarProperty Name="university" ColumnName="university" />
+          <ScalarProperty Name="grade_obj" ColumnName="grade_obj" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="work_experience">
+      <EntityTypeMapping TypeName="Parcial3PWAModel.work_experience">
+        <MappingFragment StoreEntitySet="work_experience">
+          <ScalarProperty Name="work_exp_id" ColumnName="work_exp_id" />
+          <ScalarProperty Name="work_exp_description" ColumnName="work_exp_description" />
+          <ScalarProperty Name="date_init" ColumnName="date_init" />
+          <ScalarProperty Name="date_fin" ColumnName="date_fin" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
